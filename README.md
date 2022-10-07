@@ -8,5 +8,4 @@ The stan/math Pull Request is still in progress and can be found here: https://g
 
 Please feel free to use the function for your purposes and report any bugs or ask questions to the authors:
 
-Franziska Henrich (franziska.henrich@psychologie.uni-freiburg.de)
-Valentin Pratz (pratz@stud.uni-heidelberg.de)
+Franziska Henrich (franziska.henrich@psychologie.uni-freiburg.de) and Valentin Pratz (pratz@stud.uni-heidelberg.de)

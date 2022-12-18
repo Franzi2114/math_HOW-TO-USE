@@ -1,48 +1,61 @@
-Here, you find a manual how to get started with the new function wiener_full_lpdf. 
-
-!!IMPORTANT!! This manual only works for LINUX-systems (or subsystems like Windows Subsystem for Linux (WSL) or  Virtual Machines). 
-Only when the function is fully integrated into Stan, other operating systems can use the function.
+Here, you find a manual how to get started with the new function wiener_full_lpdf on Windows, Linux and Mac.
 
 In case of any question feel free to contact the authors Franziska Henrich (franziska.henrich@psychologie.uni-freiburg.de) or Valentin Pratz (pratz@stud.uni-heidelberg.de)
 
-The easiest way to use the function is via cmdstan. You can call cmdstan via cmdstanr in R.
+The easiest way to use the function is via cmdstan. You can call cmdstan via cmdstanr in R or cmdstanpy in python.
 
 You need to follow these steps: 
 
-1) Clone the cmdstan-repository [1]:
-	$ git clone https://github.com/stan-dev/cmdstan.git --recursive
+1) Download the cmdstan-ddm-7pm.zip folder from [1] and unpack everything.
 
-2) Go to the stan-math (stan/lib/stan_math) subdirectory, add a new remote repo (name it as you want, here: new_repo), fetch the branch, and switch to that branch:
-	$ cd cmdstan/stan/lib/stan_math
-	$ git remote add new_repo git@github.com:Franzi2114/math.git
-	$ git fetch new_repo feature/issue-2682-Add-7-parameter-DDM-PDF
-	$ git checkout feature/issue-2682-Add-7-parameter-DDM-PDF
+Windows
+W2) Install all required dependencies [2]. 
+W3) Add the following to cmdstan-ddm-7pm/make/local (to use RTools42 with cmdstan). Type in the command line/ a terminal: 
+	$ cd cmdstan-ddm-7pm
+	$ vim make/local
+	press i (for insert), type the following two lines:
+		CXXFLAGS += -Wno-nonnull
+ 		TBB_CXXFLAGS= -U__MSVCRT_VERSION__ -D__MSVCRT_VERSION__=0x0E00
+	press Esc, and :x Enter (to save and exit)
+W4) build cmdstan in the cmdstan-ddm-7pm folder:
+	$ mingw32-make build
+W5) Add the path to tbb to your PATH-variable by typing
+	$ mingw32-make install-tbb
+W6) Close the shell and use a new shell to test installation (you may restart your PC)
+	create .exe: 			$ mingw32-make examples/bernoulli/bernoulli.exe 
+	test whether this worked:	$ ./examples/bernoulli/bernoulli.exe sample data file=examples/bernoulli/bernoulli.data.json 
+	summarize parameter estimates:	$ bin/stansummary.exe output.csv 
 
-3a) To be able to use the function, load the current Stan-compiler (stanc3). Follow the instructions in [2]. 
-3b) Then add in stanc3/src/middle/Stan_math_signatures.ml the signature for the new function below the wiener-signature near line 305:
-	; ([Lpdf], "wiener_full", [DReal; DReal; DReal; DReal; DReal; DReal; DReal; DReal], SoA)
-  	; ([Lpdf], "wiener_full_prec", [DReal; DReal; DReal; DReal; DReal; DReal; DReal; DReal; DReal], SoA)
 
-4) To test whether everything works, create a .stan model file in cmdstan/stan/lib/stan_math/models (or use the example models provided in the folder) 
+
+Linux
+L2) Install all required dependencies [2]. Then type
+	$ cd cmdstan-ddm-7pm
+	$ make build
+L3) To test whether everything works, create a .stan model file in cmdstan/stan/lib/stan_math/models (or use the example models provided in the folder) 
    and compile the model (!!without .stan-extension!!, see [4]):
-	$ cd cmdstan
+	$ cd cmdstan-ddm-7pm
 	$ make stan/lib/stan_math/models/wiener_full_lpdf STANC3=path/to/stanc3-folder
 
-5a) To open the documentation install doxygen [3]. Then make the documentation:
-	$ cd cmdstan/stan/lib/stan_math
+L4a) To open the documentation install doxygen [3]. Then make the documentation:
+	$ cd cmdstan-ddm-7pm/stan/lib/stan_math
 	$ make doxygen
-5b) A new folder in stan_math will be created. Double click on: doc/api/html/index.html. 
+L4b) A new folder in stan_math will be created. Double click on: doc/api/html/index.html. 
     Then a webpage opens. On the left handside, navigate to "Internal Docs". Click on "Probability Distributions". 
     Then, on the right hand side, the content of "Probability Distributions" opens. Scroll down to "wiener_full_lpdf".
 
 
 
+Mac
+M2) Follow the instructions on [2].
+
+
+
 Example R-Code for cmdstanr. 
 data.rds of the form: condition|resonse|reaction_time
-	install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))
 	library(cmdstanr)
 	library(readr)
-	set_cmdstan_path("path/to/cmdstan-folder")
+	set_cmdstan_path("path/to/cmdstan-ddm-7pm-folder")
 	file <- file.path("stan/wiener_full_lpdf.stan")
 	mod <- cmdstan_model(file)
 	init.full = function(chains=4, N=200){
@@ -82,8 +95,8 @@ data.rds of the form: condition|resonse|reaction_time
 	  init = init.full()
 	)
 
-[1] https://github.com/stan-dev/cmdstan
-[2] https://mc-stan.org/stanc3/stanc/getting_started.html
+[1] https://github.com/Franzi2114/math_HOW-TO-USE
+[2] https://mc-stan.org/docs/2_29/cmdstan-guide/cmdstan-installation.html
 [3] https://doxygen.nl/manual/install.html
 [4] https://github.com/stan-dev/cmdstan/wiki/Getting-Started-with-CmdStan
 

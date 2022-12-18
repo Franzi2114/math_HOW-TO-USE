@@ -1,8 +1,8 @@
 Here are some information on how to get started with the new function for the 7-parameter drift diffusion model.
 
-For an instruction see HOW-TO-USE-ME.txt
+For an instruction how to install cmdstan-ddm-7pm see HOW-TO-USE-ME.txt
 
-The code can be cloned from here: git@github.com:Franzi2114/math.git
+The code can be found here: git@github.com:Franzi2114/math.git
 
 The stan/math Pull Request is still in progress and can be found here: https://github.com/stan-dev/math/pull/2822
 

@@ -19,7 +19,7 @@ You need to follow these steps:
 1) Download the cmdstan-ddm-7pm.zip folder from here [1] and unpack everything.
 
 ### Windows
-- W2) Install all required dependencies [2]. 
+- W2) Install all required dependencies [2], Chapter 1.2.1.3. You need RTools42, which consists of g++ and mingw32-make.
 - W3) Add the following two lines to cmdstan-ddm-7pm/make/local (to use RTools42 with cmdstan). Type in the command line/a terminal:  
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ cd cmdstan-ddm-7pm  
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ vim make/local  

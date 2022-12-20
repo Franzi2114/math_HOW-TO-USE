@@ -16,10 +16,10 @@ Franziska Henrich (franziska.henrich@psychologie.uni-freiburg.de) and Valentin P
 ## Installation
 You need to follow these steps: 
 
-1) Download the cmdstan-ddm-7pm.zip folder from here [1] and unpack everything.
+1) Download the cmdstan-ddm-7pm.zip folder from here [1] and unpack everything. (For example with 7-Zip [2]) You need to unpack 3 times, until a folder with 17 elements is seen.
 
 ### Windows
-- W2) Install all required dependencies [2], Chapter 1.2.1.3. You need RTools42, which consists of g++ and mingw32-make.
+- W2) Install all required dependencies [3], Chapter 1.2.1.3. You need RTools42, which consists of g++ and mingw32-make.
 - W3) Add the following two lines to cmdstan-ddm-7pm/make/local (to use RTools42 with cmdstan). Type in the command line/a terminal:  
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ cd cmdstan-ddm-7pm  
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ vim make/local  
@@ -39,14 +39,14 @@ You need to follow these steps:
 
 
 ### Linux  
-- L2) Install all required dependencies [2]. Then type  
+- L2) Install all required dependencies [3]. Then type  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ cd cmdstan-ddm-7pm  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ make build  
 - L3) To test whether everything works, create a .stan model file in cmdstan/stan/lib/stan_math/models (or use the example models provided in the folder) 
    and compile the model (!!without .stan-extension!!, see [4]):  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ cd cmdstan-ddm-7pm  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ make stan/lib/stan_math/models/wiener_full_lpdf  
-- L4a) To open the documentation install doxygen [3]. Then make the documentation:  
+- L4a) To open the documentation install doxygen [5]. Then make the documentation:  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ cd cmdstan-ddm-7pm/stan/lib/stan_math  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ make doxygen  
 - L4b) A new folder in stan_math will be created. Double click on: doc/api/html/index.html.  
@@ -56,7 +56,7 @@ You need to follow these steps:
 
 
 ### Mac
-- M2) Follow the instructions on [2].
+- M2) Follow the instructions on [3].
 
 
 
@@ -106,7 +106,8 @@ data.rds of the form: condition|resonse|reaction_time
 	  init = init.full()
 	)
 
-[1] https://github.com/Franzi2114/math_HOW-TO-USE  
-[2] https://mc-stan.org/docs/2_29/cmdstan-guide/cmdstan-installation.html  
-[3] https://doxygen.nl/manual/install.html  
+[1] https://github.com/Franzi2114/math_HOW-TO-USE 
+[2] https://7-zip.de/download.html 
+[3] https://mc-stan.org/docs/2_29/cmdstan-guide/cmdstan-installation.html  
 [4] https://github.com/stan-dev/cmdstan/wiki/Getting-Started-with-CmdStan
+[5] https://doxygen.nl/manual/install.html  

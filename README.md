@@ -1,10 +1,10 @@
 Here are some information on how to get started with the new function for the 7-parameter drift diffusion model.
 
-You can use the function with cmdstanr/cmdstanpy if you unzip the folder cmdstan-ddm-7pm.zip and set the path to it in cmdstanr/cmdstanpy.
+You can use the function with cmdstanr/cmdstanpy if you unpack the folder cmdstan-ddm-7pm.zip (3 times) and set the path to it in cmdstanr/cmdstanpy.
 
-For an instruction how to install cmdstan-ddm-7pm see below.
+For a detailed instruction how to install cmdstan-ddm-7pm see below.
 
-The code can be found here: git@github.com:Franzi2114/math.git
+The code can be found here: [https://github.com/Franzi2114/math/tree/feature/issue-2682-Add-7-parameter-DDM-PDF](https://github.com/Franzi2114/math/tree/feature/issue-2682-Add-7-parameter-DDM-PDF)
 
 The stan/math Pull Request is still in progress and can be found here: https://github.com/stan-dev/math/pull/2822
 
@@ -14,12 +14,15 @@ Franziska Henrich (franziska.henrich@psychologie.uni-freiburg.de) and Valentin P
 
 
 ## Installation
-You need to follow these steps: 
 
 1) Download the cmdstan-ddm-7pm.zip folder from here [1] and unpack everything. (For example with 7-Zip [2]) You need to unpack 3 times, until a folder with 17 elements is seen.
 
 ### Windows
-- W2) Install all required dependencies [3], Chapter 1.2.1.3. You need RTools42, which consists of g++ and mingw32-make.
+- W2) Install all required dependencies [3, Chapter 1.2.1.3]. You need RTools42, which consists of `g++` and `mingw32-make`. You may install `mingw32-make` separately [6].
+- W3) Go to cmdstan-ddm-7pm/bin and rename `windows-stanc` to `stanc.exe`
+- W4) You are ready to start. In your file, set the path to the cmdstan-ddm-7pm folder: `set_cmdstan_path(path/to/cmdstan-ddm-7pm)` (insert the path in the brackets)
+
+#### Alternative for a manual installation
 - W3) Add the following two lines to cmdstan-ddm-7pm/make/local (to use RTools42 with cmdstan). Type in the command line/a terminal:  
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ cd cmdstan-ddm-7pm  
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ vim make/local  
@@ -39,24 +42,32 @@ You need to follow these steps:
 
 
 ### Linux  
-- L2) Install all required dependencies [3]. Then type  
+- L2) Install all required dependencies [3, Chapter 1.2.1.1]. You need `g++` and `make`
+- L3) Go to cmdstan-ddm-7pm/bin and rename `linux-stanc` to `stanc`
+- L4) You are ready to start. In your file, set the path to the cmdstan-ddm-7pm folder: `set_cmdstan_path(path/to/cmdstan-ddm-7pm)` (insert the path in the brackets)
+
+#### Alternative for a manual installation
+- L3) Then type  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ cd cmdstan-ddm-7pm  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ make build  
-- L3) To test whether everything works, create a .stan model file in cmdstan/stan/lib/stan_math/models (or use the example models provided in the folder) 
+- L4) To test whether everything works, create a .stan model file in cmdstan/stan/lib/stan_math/models (or use the example models provided in the folder) 
    and compile the model (!!without .stan-extension!!, see [4]):  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ cd cmdstan-ddm-7pm  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ make stan/lib/stan_math/models/wiener_full_lpdf  
-- L4a) To open the documentation install doxygen [5]. Then make the documentation:  
+- L5a) To open the documentation install doxygen [5]. Then make the documentation:  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ cd cmdstan-ddm-7pm/stan/lib/stan_math  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ make doxygen  
-- L4b) A new folder in stan_math will be created. Double click on: doc/api/html/index.html.  
+- L5b) A new folder in stan_math will be created. Double click on: doc/api/html/index.html.  
     Then a webpage opens. On the left handside, navigate to "Internal Docs". Click on "Probability Distributions".  
     Then, on the right hand side, the content of "Probability Distributions" opens. Scroll down to "wiener_full_lpdf".
 
 
 
 ### Mac
-- M2) Follow the instructions on [3].
+- M2) Install all required dependencies [3, Chapter 1.2.1.2]. You need `clang++`and `make`.
+- M3) Go to cmdstan-ddm-7pm/bin and rename `mac-stanc` to `stanc` (with the file extension for the mac executables, not sure if it's just `stanc`)
+- M4) You are ready to start. In your file, set the path to the cmdstan-ddm-7pm folder: `set_cmdstan_path(path/to/cmdstan-ddm-7pm)` (insert the path in the brackets)
+
 
 
 
@@ -106,8 +117,9 @@ data.rds of the form: condition|resonse|reaction_time
 	  init = init.full()
 	)
 
-[1] https://github.com/Franzi2114/math_HOW-TO-USE 
-[2] https://7-zip.de/download.html 
-[3] https://mc-stan.org/docs/2_29/cmdstan-guide/cmdstan-installation.html  
-[4] https://github.com/stan-dev/cmdstan/wiki/Getting-Started-with-CmdStan
-[5] https://doxygen.nl/manual/install.html  
+[1] https://github.com/Franzi2114/math_HOW-TO-USE  
+[2] https://7-zip.de/download.html  
+[3] https://mc-stan.org/docs/2_29/cmdstan-guide/cmdstan-installation.html   
+[4] https://github.com/stan-dev/cmdstan/wiki/Getting-Started-with-CmdStan  
+[5] https://doxygen.nl/manual/install.html   
+[6] https://www.geeksforgeeks.org/installing-mingw-tools-for-c-c-and-changing-environment-variable/

@@ -12,6 +12,12 @@ Please feel free to use the function for your purposes and report any bugs or as
 
 Franziska Henrich (franziska.henrich@psychologie.uni-freiburg.de) and Valentin Pratz (pratz@stud.uni-heidelberg.de)
 
+## Illustration of the function's behavior
+Valentin followed the three-level setup by Böhem et al. (2018) and provides a hands-on illustration of the function's behavior in three blog entries:  
+[Level 1](https://valentinpratz.de/posts/2022-12-29-stan-wiener_full-level-1/)  
+[Level 2](https://valentinpratz.de/posts/2022-12-30-stan-wiener_full-level-2/)  
+[Level 3](https://valentinpratz.de/posts/2023-01-11-stan-wiener_full-level-3/)
+
 
 ## Installation
 
@@ -123,3 +129,11 @@ data.rds of the form: condition|resonse|reaction_time
 [4] https://github.com/stan-dev/cmdstan/wiki/Getting-Started-with-CmdStan  
 [5] https://doxygen.nl/manual/install.html   
 [6] https://www.geeksforgeeks.org/installing-mingw-tools-for-c-c-and-changing-environment-variable/
+
+## References
+Boehm, U., Annis, J., Frank, M. J., Hawkins, G. E., Heathcote, A., Kellen, D.,
+Krypotos, A.-M., Lerche, V., Logan, G. D., Palmeri, T. J., van Ravenzwaaij, D.,
+Servant, M., Singmann, H., Starns, J. J., Voss, A., Wiecki, T. V., Matzke, D., &
+Wagenmakers, E.-J. (2018). Estimating across-trial variability parameters of the
+Diﬀusion Decision Model: Expert advice and recommendations. Journal of
+Mathematical Psychology, 87(4), 46–75. https://doi.org/10.1016/j.jmp.2018.09.004 

@@ -13,7 +13,7 @@ Please feel free to use the function for your purposes and report any bugs or as
 Franziska Henrich (franziska.henrich@psychologie.uni-freiburg.de) and Valentin Pratz (pratz@stud.uni-heidelberg.de)
 
 ## Illustration of the function's behavior
-Valentin followed the three-level setup by Böhem et al. (2018) and provides a hands-on illustration of the function's behavior in three blog entries:  
+Valentin followed the three-level setup by Boehem et al. (2018) and provides a hands-on illustration of the function's behavior in three blog entries:  
 [Level 1](https://valentinpratz.de/posts/2022-12-29-stan-wiener_full-level-1/)  
 [Level 2](https://valentinpratz.de/posts/2022-12-30-stan-wiener_full-level-2/)  
 [Level 3](https://valentinpratz.de/posts/2023-01-11-stan-wiener_full-level-3/)

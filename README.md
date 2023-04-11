@@ -26,7 +26,8 @@ Valentin followed the three-level setup by Boehem et al. (2018) and provides a h
 ### Windows
 - W2) Install all required dependencies [3, Chapter 1.2.1.3]. You need RTools42, which consists of `g++` and `mingw32-make`. You may install `mingw32-make` separately [6].
 - W3) Go to cmdstan-ddm-7pm/bin and rename `windows-stanc` to `stanc.exe`
-- W4) You are ready to start. In your file, set the path to the cmdstan-ddm-7pm folder: `set_cmdstan_path(path/to/cmdstan-ddm-7pm)` (insert the path in the brackets)
+- W4) Add to your environment-variable PATH the following path: path_to_cmdstan-ddm-7pm\stan\lib\stan_math\lib\tbb [How to add an environment variable, see 7]
+- W5) You are ready to start. In your file, set the path to the cmdstan-ddm-7pm folder: `set_cmdstan_path(path/to/cmdstan-ddm-7pm)` (insert the path in the brackets)
 
 #### Alternative for a manual installation
 - W3) Add the following two lines to cmdstan-ddm-7pm/make/local (to use RTools42 with cmdstan). Type in the command line/a terminal:  
@@ -129,6 +130,7 @@ data.rds of the form: condition|resonse|reaction_time
 [4] https://github.com/stan-dev/cmdstan/wiki/Getting-Started-with-CmdStan  
 [5] https://doxygen.nl/manual/install.html   
 [6] https://www.geeksforgeeks.org/installing-mingw-tools-for-c-c-and-changing-environment-variable/
+[7] https://www.java.com/en/download/help/path.html
 
 ## References
 Boehm, U., Annis, J., Frank, M. J., Hawkins, G. E., Heathcote, A., Kellen, D.,

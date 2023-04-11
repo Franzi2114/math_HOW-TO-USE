@@ -129,7 +129,7 @@ data.rds of the form: condition|resonse|reaction_time
 [3] https://mc-stan.org/docs/2_29/cmdstan-guide/cmdstan-installation.html   
 [4] https://github.com/stan-dev/cmdstan/wiki/Getting-Started-with-CmdStan  
 [5] https://doxygen.nl/manual/install.html   
-[6] https://www.geeksforgeeks.org/installing-mingw-tools-for-c-c-and-changing-environment-variable/
+[6] https://www.geeksforgeeks.org/installing-mingw-tools-for-c-c-and-changing-environment-variable/  
 [7] https://www.java.com/en/download/help/path.html
 
 ## References

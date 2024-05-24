@@ -1,16 +1,18 @@
 Here are some information on how to get started with the new function for the 7-parameter drift diffusion model.
 
-You can use the function with cmdstanr/cmdstanpy if you unpack the folder cmdstan-ddm-7pm.zip (3 times) and set the path to it in cmdstanr/cmdstanpy.
+The paper introducing the new function to Stan is Henrich et al. (2023). There is the theoratical background and a description on how to set up the diffusion model in Stan.
 
-For a detailed instruction how to install cmdstan-ddm-7pm see below.
-
-The code can be found here: [https://github.com/Franzi2114/math/tree/feature/issue-2682-Add-7-parameter-DDM-PDF](https://github.com/Franzi2114/math/tree/feature/issue-2682-Add-7-parameter-DDM-PDF)
-
-The stan/math Pull Request is still in progress and can be found here: https://github.com/stan-dev/math/pull/2822
+The function is available in Stan (since release 2.35.0, June 2024).
 
 Please feel free to use the function for your purposes and report any bugs or ask questions to the authors:
 
-Franziska Henrich (franziska.henrich@psychologie.uni-freiburg.de) and Valentin Pratz (pratz@stud.uni-heidelberg.de)
+Franziska Henrich (franziska.henrich@psychologie.uni-freiburg.de) and Valentin Pratz (pratz@stud.uni-heidelberg.de,
+
+or open an issue on Github referring to the seven-parameter diffusion model: https://github.com/stan-dev/math/issues.
+
+## Remark
+1) The function is now called in another way as described in the paper: To call the function use `wiener()` or `wiener_lpdf()` instead of `wiener_full()` or `wiener_full_lpdf()`, respectively (also have this in mind when you look at Valentines example below).
+2) The ordering of the variables is the following: `wiener_lpdf(a, t0, w, v, sv, sw, st0)`. In an earlier version of the code we used another ordering. But this will cause weird errors. (Again, in Valentines code below, the old ordering is present. Don't be confused of this.)
 
 ## Illustration of the function's behavior
 Valentin followed the three-level setup by Boehem et al. (2018) and provides a hands-on illustration of the function's behavior in three blog entries:  
@@ -19,73 +21,14 @@ Valentin followed the three-level setup by Boehem et al. (2018) and provides a h
 [Level 3](https://valentinpratz.de/posts/2023-01-11-stan-wiener_full-level-3/)
 
 
-## Installation
-
-1) Download the cmdstan-ddm-7pm.zip folder from here [1] and unpack everything. (For example with 7-Zip [2]) You need to unpack 3 times, until a folder with 17 elements is seen.
-
-### Windows
-- W2) Install all required dependencies [3, Chapter 1.2.1.3]. You need RTools42, which consists of `g++` and `mingw32-make`. You may install `mingw32-make` separately [6].
-- W3) Go to cmdstan-ddm-7pm/bin and rename `windows-stanc` to `stanc.exe`
-- W4) Add to your environment-variable PATH the following path: path_to_cmdstan-ddm-7pm\stan\lib\stan_math\lib\tbb [How to add an environment variable, see 7]
-- W5) You are ready to start. In your file, set the path to the cmdstan-ddm-7pm folder: `set_cmdstan_path(path/to/cmdstan-ddm-7pm)` (insert the path in the brackets)
-
-#### Alternative for a manual installation
-- W3) Add the following two lines to cmdstan-ddm-7pm/make/local (to use RTools42 with cmdstan). Type in the command line/a terminal:  
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ cd cmdstan-ddm-7pm  
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ vim make/local  
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;press i (for insert), type the following two lines:  
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	CXXFLAGS += -Wno-nonnull  
- 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	TBB_CXXFLAGS= -U__MSVCRT_VERSION__ -D__MSVCRT_VERSION__=0x0E00  
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;press Esc, and :x Enter (to save and exit)  
-- W4) build cmdstan in the cmdstan-ddm-7pm folder:  
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ mingw32-make build
-- W5) Add the path to tbb to your PATH-variable by typing  
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ mingw32-make install-tbb
-- W6) Close the shell and use a new shell to test installation (you may restart your PC)  
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;create .exe: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			$ mingw32-make examples/bernoulli/bernoulli.exe  
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test whether this worked:	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ ./examples/bernoulli/bernoulli.exe sample data file=examples/bernoulli/bernoulli.data.json  
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;summarize parameter estimates:	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ bin/stansummary.exe output.csv  
-
-
-
-### Linux  
-- L2) Install all required dependencies [3, Chapter 1.2.1.1]. You need `g++` and `make`
-- L3) Go to cmdstan-ddm-7pm/bin and rename `linux-stanc` to `stanc`
-- L4) You are ready to start. In your file, set the path to the cmdstan-ddm-7pm folder: `set_cmdstan_path(path/to/cmdstan-ddm-7pm)` (insert the path in the brackets)
-
-#### Alternative for a manual installation
-- L3) Then type  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ cd cmdstan-ddm-7pm  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ make build  
-- L4) To test whether everything works, create a .stan model file in cmdstan/stan/lib/stan_math/models (or use the example models provided in the folder) 
-   and compile the model (!!without .stan-extension!!, see [4]):  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ cd cmdstan-ddm-7pm  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ make stan/lib/stan_math/models/wiener_full_lpdf  
-- L5a) To open the documentation install doxygen [5]. Then make the documentation:  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ cd cmdstan-ddm-7pm/stan/lib/stan_math  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$ make doxygen  
-- L5b) A new folder in stan_math will be created. Double click on: doc/api/html/index.html.  
-    Then a webpage opens. On the left handside, navigate to "Internal Docs". Click on "Probability Distributions".  
-    Then, on the right hand side, the content of "Probability Distributions" opens. Scroll down to "wiener_full_lpdf".
-
-
-
-### Mac
-- M2) Install all required dependencies [3, Chapter 1.2.1.2]. You need `clang++`and `make`.
-- M3) Go to cmdstan-ddm-7pm/bin and rename `mac-stanc` to `stanc` (with the file extension for the mac executables, not sure if it's just `stanc`)
-- M4) You are ready to start. In your file, set the path to the cmdstan-ddm-7pm folder: `set_cmdstan_path(path/to/cmdstan-ddm-7pm)` (insert the path in the brackets)
-
-
-
-
 ## Example R-Code for cmdstanr.
 
 data.rds of the form: condition|resonse|reaction_time
 
 	library(cmdstanr)
 	library(readr)
-	set_cmdstan_path("path/to/cmdstan-ddm-7pm-folder")
-	file <- file.path("stan/wiener_full_lpdf.stan")
+	set_cmdstan_path("path/to/cmdstan")
+	file <- file.path("stan/wiener_lpdf.stan")
 	mod <- cmdstan_model(file)
 	init.full = function(chains=4, N=200){
 	  L = list()
@@ -123,14 +66,7 @@ data.rds of the form: condition|resonse|reaction_time
 	  iter_sampling = 300,
 	  init = init.full()
 	)
-
-[1] https://github.com/Franzi2114/math_HOW-TO-USE  
-[2] https://7-zip.de/download.html  
-[3] https://mc-stan.org/docs/2_29/cmdstan-guide/cmdstan-installation.html   
-[4] https://github.com/stan-dev/cmdstan/wiki/Getting-Started-with-CmdStan  
-[5] https://doxygen.nl/manual/install.html   
-[6] https://www.geeksforgeeks.org/installing-mingw-tools-for-c-c-and-changing-environment-variable/  
-[7] https://www.java.com/en/download/help/path.html
+ 
 
 ## References
 Boehm, U., Annis, J., Frank, M. J., Hawkins, G. E., Heathcote, A., Kellen, D.,
@@ -139,3 +75,7 @@ Servant, M., Singmann, H., Starns, J. J., Voss, A., Wiecki, T. V., Matzke, D., &
 Wagenmakers, E.-J. (2018). Estimating across-trial variability parameters of the
 Diﬀusion Decision Model: Expert advice and recommendations. Journal of
 Mathematical Psychology, 87(4), 46–75. https://doi.org/10.1016/j.jmp.2018.09.004 
+
+Henrich, F., Hartmann, R., Pratz, V., Voss, A., & Klauer, K. C. (2023). The
+Seven-parameter Diffusion Model: An Implementation in Stan for Bayesian
+Analyses. Behavior Research Methods. https://doi.org/10.3758/s13428-023-02179-1

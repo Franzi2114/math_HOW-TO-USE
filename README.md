@@ -6,7 +6,7 @@ The function is available in Stan (since release 2.35.0, June 2024).
 
 Please feel free to use the function for your purposes and report any bugs or ask questions to the authors:
 
-Franziska Henrich (franziska.henrich@psychologie.uni-freiburg.de) and Valentin Pratz (pratz@stud.uni-heidelberg.de,
+Franziska Henrich (fh422@email.uni-freiburg.de) and Valentin Pratz (pratz@stud.uni-heidelberg.de,
 
 or open an issue on Github referring to the seven-parameter diffusion model: https://github.com/stan-dev/math/issues.
 

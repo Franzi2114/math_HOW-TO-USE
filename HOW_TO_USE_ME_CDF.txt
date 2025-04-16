@@ -1,0 +1,37 @@
+Here, you find a manual how to get started with the new functionality wiener_full to use CDF and CCDF. 
+
+!!IMPORTANT!! This manual only works for LINUX-systems (or subsystems like Windows Subsystem for Linux (WSL) or  Virtual Machines). 
+Only when the function is fully integrated into Stan, other operating systems can use the function.
+
+In case of any question feel free to contact the authors Franziska Henrich (fh422@email.uni-freiburg.de).
+
+The easiest way to use the function is via cmdstan. You can call cmdstan via cmdstanr in R.
+
+You need to follow these steps: 
+
+1) Clone the cmdstan-repository [1]:
+	$ git clone https://github.com/stan-dev/cmdstan.git --recursive
+
+2) In the new cmdstanfolder, go to the stan-math (stan/lib/stan_math) subdirectory, add a new remote repo (name it as you want, here: new_repo), fetch the branch, and switch to that branch:
+	$ cd cmdstan/stan/lib/stan_math
+	$ git remote add new_repo git@github.com:Franzi2114/math.git
+	$ git fetch new_repo feature/issue-2966-Add-7-parameter-DDM-CDF-and-CCDF
+	$ git checkout feature/issue-2966-Add-7-parameter-DDM-CDF-and-CCDF
+
+3) Ask Franziska for the stanc-file. This is a precompiled file that should be copied to the following destination (in Linux without any extention):
+	(Linux) 	cmdstan/bin/stanc
+	(Windows)	cmdstan/bin/stanc.exe
+   if permission denied on cmdstan/bin/stanc, set permissions with
+	$ chmod +rwx cmdstan/bin/stanc
+
+4) To test whether everything works, create a new_model.stan model file in cmdstan/stan/lib/stan_math/models (or use the example models provided in the folder) 
+   and compile the model (!!without .stan-extension!!, see [2]):
+	$ cd cmdstan
+	$ make stan/lib/stan_math/models/new_model
+
+
+
+[1] https://github.com/stan-dev/cmdstan
+[2] https://github.com/stan-dev/cmdstan/wiki/Getting-Started-with-CmdStan
+
+

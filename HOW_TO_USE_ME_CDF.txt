@@ -18,10 +18,10 @@ You need to follow these steps:
 	$ git fetch new_repo feature/issue-2966-Add-7-parameter-DDM-CDF-and-CCDF
 	$ git checkout feature/issue-2966-Add-7-parameter-DDM-CDF-and-CCDF
 
-3) Ask Franziska for the stanc-file. This is a precompiled file that should be copied to the following destination (in Linux without any extention):
+3) Use the stanc.exe file in the folder. This is a precompiled file that should be copied to the following destination (in Linux without any extention):
 	(Linux) 	cmdstan/bin/stanc
 	(Windows)	cmdstan/bin/stanc.exe
-   if permission denied on cmdstan/bin/stanc, set permissions with
+   If permission denied on cmdstan/bin/stanc, set permissions with
 	$ chmod +rwx cmdstan/bin/stanc
 
 4) To test whether everything works, create a new_model.stan model file in cmdstan/stan/lib/stan_math/models (or use the example models provided in the folder) 
